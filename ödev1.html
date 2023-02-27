@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body onload="yazdır()">
+    <form action="">
+    <h3>KİRA HESAPLAMA</h3>
+    <br>
+    <label>Evde Oturmaya başladığınız yıl</label>
+    <select id="yil">
+        <option>yıl</option>
+    </select>
+    <br><br>
+    <label>Evde oturmaya başladığınız ay</label>
+    <select id="ay">
+        <option>ay</option>
+    </select>
+    <br><br>
+    <label>En son ödediğinz kira</label>
+    <input id="kira" type="text">
+    <br><br>
+    <input onclick="hesaplama()" type="button" value="hesapla">
+    <br><br>
+    <h5 id="yenikira">Yeni kira: </h5>
+    <h5 id="oran">Yapılan zam oranı: </h5>
+    <h5 id="yapılan">Kira kontradının yenileme tarihi: </h5>
+    <h5 id="yeni">Kontradın yenilenmesine kalan süre: </h5>
+    </form>
+</body>
+<script>
+
+      function hesaplama(){
+        let son=document.getElementById("yil");
+        let sonu=son.options[son.selectedIndex].text;
+        let kira=document.getElementById("kira").value;
+        let ay=document.getElementById("ay");
+        let aya=ay.options[ay.selectedIndex].text;
+        if (sonu<=2017){
+            let hesap=(kira*50)/100;
+            let sonuc=parseInt(kira)+parseInt(hesap);
+            document.getElementById("yenikira").innerHTML="Yeni kira: "+sonuc;
+            document.getElementById("oran").innerHTML="Yapılan zam oranı: %50";
+        }
+        else{
+            let hesap=(kira*25)/100;
+            let sonuc=parseInt(kira)+parseInt(hesap);
+            document.getElementById("yenikira").innerHTML="Yeni kira: "+sonuc;
+            document.getElementById("oran").innerHTML="Yapılan zam oranı: %25";
+        }
+          document.getElementById("yapılan").innerHTML="Kira kontradının yenilenme tarihi: "+sonu+" yılı " + aya + " ayında yapılmıştır";
+      }
+
+
+  function yazdır(){
+
+      for (let i=1; i<=12; i++){
+          console.log(i);
+          let secenek=document.createElement("option");
+          document.getElementById("ay").options.add(secenek);
+          secenek.text=i;
+      }
+      for(let i=2023; i>2005; i--){
+          let secenek=document.createElement("option");
+          document.getElementById("yil").options.add(secenek);
+          secenek.text=i;
+      }
+    
+  }
+</script>
+</html>
